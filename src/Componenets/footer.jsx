@@ -13,7 +13,7 @@ const Footer = () => {
 
       {/* Footer Links */}
       <div className="mt-6 flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6 font-sans">
-        <span>Test Tesla © 2024</span>
+        <span>Auto Mobile © 2024</span>
         <a href="#" className="hover:underline">Privacy & Legal</a>
         <a href="#" className="hover:underline">Vehicle Recalls</a>
         <a href="#" className="hover:underline">Contact</a>

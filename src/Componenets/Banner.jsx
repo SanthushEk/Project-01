@@ -15,7 +15,7 @@ const Banner = () => {
           Experience Full Self-Driving (Supervised) in any Tesla vehicle with a demo drive.
         </p>
         <button className="w-full md:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-lg font-bold rounded-md transition duration-300">
-          Experience Tesla
+          Experience
         </button>
       </div>
     </div>

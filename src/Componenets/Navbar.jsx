@@ -1,28 +1,47 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaGlobe, FaUser, FaCog, FaBars, FaTimes, FaChevronRight } from 'react-icons/fa';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false); // State to manage the mobile menu
+  const [showNavbar, setShowNavbar] = useState(true); // State to control navbar visibility
+  const [lastScrollY, setLastScrollY] = useState(0); // State to track last scroll position
+  const [scrollThreshold] = useState(50); // Threshold to show navbar when scrolling up
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const controlNavbar = () => {
+    if (window.scrollY > lastScrollY && window.scrollY > scrollThreshold) {
+      setShowNavbar(false); // Hide navbar on scroll down if past threshold
+    } else if (window.scrollY < lastScrollY && window.scrollY <= scrollThreshold) {
+      setShowNavbar(true); // Show navbar if scrolling up to the top
+    }
+    setLastScrollY(window.scrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', controlNavbar);
+    return () => {
+      window.removeEventListener('scroll', controlNavbar);
+    };
+  }, [lastScrollY]);
+
   return (
-    <nav className="bg-transparent fixed w-full z-10 top-0 ">
+    <nav className={`fixed w-full z-10 top-0 transition-transform duration-300 ${showNavbar ? 'translate-y-0' : '-translate-y-full'} ${isOpen ? 'bg-white' : 'bg-transparent md:bg-transparent'}`}>
       <div className="container mx-auto flex items-center justify-between p-5 w-full">
         {/* Left Side - Logo */}
         <a href="#" className='flex items-center space-x-2'>
-          <h1 className='text-[30px] font-bold text-white font-[Roboto] tracking-widest'>TESLA</h1>
+          <h1 className='text-[30px] font-bold text-white font-[Roboto] tracking-widest'>Auto Motors</h1>
         </a>
 
         {/* Hamburger Icon for Mobile */}
         <div className="md:hidden" onClick={toggleMenu}>
-          {isOpen ? <FaTimes className="text-white w-6 h-6" /> : <FaBars className="text-white w-6 h-6" />}
+          {isOpen ? <FaTimes className="text-black w-6 h-6" /> : <FaBars className="text-white w-6 h-6" />}
         </div>
 
         {/* Center - Navigation Links */}
-        <ul className={`hidden md:flex space-x-12 font-medium font-[Roboto]`}>
+        <ul className="hidden md:flex space-x-12 font-medium font-[Roboto]">
           <li><a href="#" className="text-[#FFFFFF] cursor-pointer">Vehicle</a></li>
           <li><a href="#" className="text-[#FFFFFF] cursor-pointer">Energy</a></li>
           <li><a href="#" className="text-[#FFFFFF] cursor-pointer">Charging</a></li>

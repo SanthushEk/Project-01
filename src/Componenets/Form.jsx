@@ -42,6 +42,7 @@ const Form = () => {
 
   return (
     <div className="flex flex-wrap mx-auto mt-10 mb-10 px-4 md:px-10 lg:ml-[400px] lg:mr-[400px] lg:mt-[200px] lg:mb-[200px]">
+      {/* Form Section */}
       <div className="w-full md:w-1/2 p-8 bg-white">
         <h2 className="text-3xl font-bold mb-4 font-Oxanium">
           Discover Autonomy
@@ -164,14 +165,15 @@ const Form = () => {
         </form>
       </div>
 
-      <div className="hidden md:flex w-full md:w-1/2 bg-gray-200 items-center justify-center rounded-md max-h-[700px] mt-[90px]">
+      {/* Video Section - Only Visible on Large Screens */}
+      <div className="hidden lg:flex w-full md:w-1/2 bg-gray-200 items-center justify-center rounded-md max-h-[500px] mt-[100px]">
         <video
           src={video}
-          className="w-full h-full object-cover rounded-md mx-auto"
+          className="w-full h-full object-cover rounded-md"
           autoPlay
           loop
           muted
-          controls 
+          controls
         />
       </div>
     </div>
